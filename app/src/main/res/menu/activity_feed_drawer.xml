@@ -4,35 +4,30 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+        <item android:title="FeedMe - The Recipe Application">
+            <menu>
+                <item
+                    android:id="@+id/nav_account"
+                    android:icon="@drawable/ic_account_icon"
+                    android:title="Account" />
+                <item
+                    android:id="@+id/nav_recipe"
+                    android:icon="@drawable/ic_pot_icon"
+                    android:title="My Recipes" />
+                <item
+                    android:id="@+id/nav_create_recipe"
+                    android:icon="@drawable/ic_create_icon"
+                    android:title="Create Recipe" />
+                <item
+                    android:id="@+id/nav_preferences"
+                    android:icon="@drawable/ic_prefrences_icon"
+                    android:title="Preferences" />
+                <item
+                    android:id="@+id/nav_git"
+                    android:icon="@drawable/ic_git"
+                    android:title="Find me on GitHub" />
+            </menu>
+        </item>
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
 </menu>

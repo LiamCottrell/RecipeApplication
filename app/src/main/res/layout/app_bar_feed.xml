@@ -18,7 +18,7 @@
             android:background="#fafafa"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <android.support.constraint.ConstraintLayout
+            <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
