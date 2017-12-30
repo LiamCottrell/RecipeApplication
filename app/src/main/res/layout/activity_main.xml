@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     tools:context="liamcottrell.recipeapplication.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/hamburger"
+        android:layout_width="36dp"
+        android:layout_height="27dp"
+        android:background="@drawable/ic_hamburger_icon"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
 
+    <Button
+        android:id="@+id/search"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:background="@drawable/ic_search_icon"
+        tools:layout_editor_absoluteX="341dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/Feed_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:text="Feed"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="23dp" />
 </android.support.constraint.ConstraintLayout>
