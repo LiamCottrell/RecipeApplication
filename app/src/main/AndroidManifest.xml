@@ -16,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Feed"></activity>
+        <activity
+            android:name=".Feed"
+            android:label="@string/title_activity_feed"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
