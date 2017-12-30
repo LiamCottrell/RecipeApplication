@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RecipeApplication</string>
+    <string name="feed_page_name">Feed</string>
 </resources>
