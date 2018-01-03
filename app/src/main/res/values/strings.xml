@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RecipeApplication</string>
     <string name="feed_page_name">Feed</string>
-    <string name="title_activity_feed2">feed2</string>
+    <string name="preferences_page_name">Preferences</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -19,7 +19,8 @@
         <activity
             android:name=".Feed"
             android:label="@string/title_activity_feed"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Preferences"></activity>
     </application>
 
 </manifest>
