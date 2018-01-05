@@ -1,13 +1,35 @@
 package liamcottrell.recipeapplication;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
+import java.util.concurrent.ExecutionException;
+
+import liamcottrell.recipeapplication.datamodel.Recipe;
+import okhttp3.HttpUrl;
 
 public class MainActivity extends AppCompatActivity {
+    private static int SPLASH_TIME_OUT = 4000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                Intent feedIntent = new Intent(MainActivity.this, Feed.class);
+                startActivity(feedIntent);
+                finish();
+            }
+        }, SPLASH_TIME_OUT);
     }
 }

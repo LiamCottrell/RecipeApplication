@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">RecipeApplication</string>
+    <string name="feed_page_name">Feed</string>
+    <string name="preferences_page_name">Preferences</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_feed">Feed</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="preferences">Preferences</string>
+    <string name="find_me_on_github">Find me on GitHub</string>
+    <string name="title_activity_Preferences" />
 </resources>
