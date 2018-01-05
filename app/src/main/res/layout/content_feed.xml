@@ -9,5 +9,13 @@
     tools:showIn="@layout/app_bar_feed">
 
 
+    <ImageView
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="Image"></ImageView>
+
 
 </android.support.constraint.ConstraintLayout>

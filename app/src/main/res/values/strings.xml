@@ -8,4 +8,8 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_feed">Feed</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="preferences">Preferences</string>
+    <string name="find_me_on_github">Find me on GitHub</string>
+    <string name="title_activity_Preferences" />
 </resources>

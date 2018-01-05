@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1054311737861",
+    "firebase_url": "https://recipe-application-dc5b1.firebaseio.com",
+    "project_id": "recipe-application-dc5b1",
+    "storage_bucket": "recipe-application-dc5b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054311737861:android:44df1c07e3f5c4ee",
+        "android_client_info": {
+          "package_name": "liamcottrell.recipeapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054311737861-uojt1jet5jrtm9eekru0mgcq0tkt8urg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPKyFT_5hnAAmezB8tUMy4u_yAzFIelFQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
