@@ -2,7 +2,6 @@ package liamcottrell.recipeapplication;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,27 +9,22 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONObject;
-
-import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
+import liamcottrell.recipeapplication.datamodel.Match;
 import liamcottrell.recipeapplication.datamodel.Recipe;
 import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class Feed extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {
@@ -80,10 +74,10 @@ public class Feed extends AppCompatActivity
             Attribute.setText(attributeText);
 
 
-            Log.i("URL", String.valueOf(LatestRecipes.getMatches().get(0).getSmallImageUrls().get(0)));
+/*            Log.i("URL", String.valueOf(LatestRecipes.getMatches().get(0).getSmallImageUrls().get(0)));*/
 
 
-            //Initialize ImageView
+/*            //Initialize ImageView
             ImageView imageView = (ImageView) findViewById(R.id.test);
 
             //Loading image from below url into imageView
@@ -92,7 +86,43 @@ public class Feed extends AppCompatActivity
                     .load(LatestRecipes.getMatches().get(0).getSmallImageUrls().get(0))
                     .placeholder(R.drawable.ic_feedme_icon)
                     .resize(360, 240)
-                    .into(imageView);
+                    .into(imageView);*/
+
+
+
+
+            LayoutInflater li = getLayoutInflater();
+
+            LinearLayout linearLayout = findViewById(R.id.match_content);
+
+
+
+            for( Match match : LatestRecipes.getMatches() ) {
+                ViewGroup myView = (ViewGroup) li.from(this).inflate(R.layout.match_widget,null);
+
+                TextView matchTitle = myView.findViewById(R.id.matchTitle);
+                TextView totalTime = myView.findViewById(R.id.TotalTimeText);
+                TextView userRating = myView.findViewById(R.id.matchRating);
+                TextView source = myView.findViewById(R.id.MatchSource);
+
+                ImageView imageView = (ImageView) myView.findViewById(R.id.matchImage);
+
+
+
+
+                Picasso.with(this)
+                        .load(match.getSmallImageUrls().get(0))
+                        .into(imageView);
+
+
+                matchTitle.setText(match.getRecipeName());
+                totalTime.setText(DateUtils.formatElapsedTime(match.getTotalTimeInSeconds()));
+                userRating.setText(match.getRating().toString());
+                source.setText(match.getSourceDisplayName());
+
+                linearLayout.addView(myView);
+
+            }
 
         }
 
