@@ -1,4 +1,4 @@
-package liamcottrell.recipeapplication.Recipe;
+package liamcottrell.recipeapplication.datamodel.singleRecipe;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

@@ -1,6 +1,7 @@
 package liamcottrell.recipeapplication;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,23 +14,27 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hookedonplay.decoviewlib.DecoView;
+import com.hookedonplay.decoviewlib.charts.SeriesItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.ExecutionException;
 
-import liamcottrell.recipeapplication.datamodel.Match;
-import liamcottrell.recipeapplication.datamodel.Recipe;
+import liamcottrell.recipeapplication.datamodel.Matches.Flavors;
+import liamcottrell.recipeapplication.datamodel.Matches.Match;
+import liamcottrell.recipeapplication.datamodel.Matches.Matches;
 import okhttp3.HttpUrl;
 
 public class Feed extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {
 
-        private Recipe LatestRecipes;
+        private Matches LatestRecipes;
 
 
         @Override
@@ -49,44 +54,27 @@ public class Feed extends AppCompatActivity
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
 
-            TextView Attribute = (TextView) findViewById(R.id.attribute);
+
 
 
             HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.yummly.com/v1/api/recipes").newBuilder();
             urlBuilder.addQueryParameter("requirePictures","true");
             final String requestURL = urlBuilder.build().toString();
 
-            JSONTask Json = new JSONTask();
-            Json.execute(requestURL);
-            try {
-                LatestRecipes = Json.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
+            JSONMatches getLatest = new JSONMatches();
+
+            final Matches LatestRecipes = getLatest.JSONMatches(requestURL);
+
 
 
             Log.i("Eg", String.valueOf(LatestRecipes.getMatches().get(1).getRecipeName()));
-            String attributeText = LatestRecipes.getAttribution().getText();
-            Log.i("Attribute", attributeText);
 
-            Attribute.setText(attributeText);
 
 
 /*            Log.i("URL", String.valueOf(LatestRecipes.getMatches().get(0).getSmallImageUrls().get(0)));*/
 
 
-/*            //Initialize ImageView
-            ImageView imageView = (ImageView) findViewById(R.id.test);
 
-            //Loading image from below url into imageView
-
-            Picasso.with(this)
-                    .load(LatestRecipes.getMatches().get(0).getSmallImageUrls().get(0))
-                    .placeholder(R.drawable.ic_feedme_icon)
-                    .resize(360, 240)
-                    .into(imageView);*/
 
 
 
@@ -94,16 +82,44 @@ public class Feed extends AppCompatActivity
             LayoutInflater li = getLayoutInflater();
 
             LinearLayout linearLayout = findViewById(R.id.match_content);
+            final ViewGroup attribute = (ViewGroup) li.inflate(R.layout.match_attribute,null);
+            attribute.setOnClickListener( new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Intent attributeIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(LatestRecipes.getAttribution().getUrl()));
+                    startActivity(attributeIntent);
+                }
+            });
+            linearLayout.addView(attribute);
+
+            TextView Attribute = (TextView) findViewById(R.id.attributeText);
+            String attributeTextContext = LatestRecipes.getAttribution().getText();
+            Attribute.setText(attributeTextContext);
+
+            //Initialize ImageView
+            ImageView attributeImage = (ImageView) findViewById(R.id.attributeImage);
+
+            //Loading image from below url into imageView
+
+            Picasso.with(this)
+                    .load(LatestRecipes.getAttribution().getLogo())
+                    .into(attributeImage);
 
 
-
-            for( Match match : LatestRecipes.getMatches() ) {
+            for( final Match match : LatestRecipes.getMatches() ) {
                 ViewGroup myView = (ViewGroup) li.from(this).inflate(R.layout.match_widget,null);
 
                 TextView matchTitle = myView.findViewById(R.id.matchTitle);
                 TextView totalTime = myView.findViewById(R.id.TotalTimeText);
                 TextView userRating = myView.findViewById(R.id.matchRating);
                 TextView source = myView.findViewById(R.id.MatchSource);
+
+                DecoView spiceContainer = myView.findViewById(R.id.MatchPiquantDV);
+                DecoView bitterContainer = myView.findViewById(R.id.MatchBitterDV);
+                DecoView sweetContainer = myView.findViewById(R.id.MatchSweetDV);
+                DecoView savoryContainer = myView.findViewById(R.id.MatchMeatyDV);
+                DecoView saltyContainer = myView.findViewById(R.id.MatchSaltyDV);
+                DecoView sourContainer = myView.findViewById(R.id.MatchSourDV);
 
                 ImageView imageView = (ImageView) myView.findViewById(R.id.matchImage);
 
@@ -116,11 +132,36 @@ public class Feed extends AppCompatActivity
 
 
                 matchTitle.setText(match.getRecipeName());
-                totalTime.setText(DateUtils.formatElapsedTime(match.getTotalTimeInSeconds()));
+                totalTime.setText(String.format("%d hr(s) %02d min(s)", match.getTotalTimeInSeconds() / 3600, (match.getTotalTimeInSeconds() % 3600) / 60));
                 userRating.setText(match.getRating().toString());
                 source.setText(match.getSourceDisplayName());
 
+                try{
+                    Flavors flavors = match.getFlavors();
+
+                    generateDecoView(flavors.getPiquant().floatValue(), spiceContainer);
+                    generateDecoView(flavors.getBitter().floatValue(), bitterContainer);
+                    generateDecoView(flavors.getSweet().floatValue(), sweetContainer);
+                    generateDecoView(flavors.getMeaty().floatValue(), savoryContainer);
+                    generateDecoView(flavors.getSalty().floatValue(), saltyContainer);
+                    generateDecoView(flavors.getSour().floatValue(), sourContainer);
+
+
+                } catch (Exception e){
+
+                }
+
+                myView.setOnClickListener( new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        Intent recipeIntent = new Intent(Feed.this, Recipe.class);
+                        recipeIntent.putExtra("recipeID", match.getId());
+                        startActivity(recipeIntent);
+                    }
+                });
+
                 linearLayout.addView(myView);
+
 
             }
 
@@ -159,6 +200,23 @@ public class Feed extends AppCompatActivity
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
             return true;
+        }
+
+        public void generateDecoView(float flavor, DecoView container){
+            container.addSeries(new SeriesItem.Builder(Color.argb(255, 218, 218, 218))
+                    .setRange(0, 1, 1)
+                    .setInitialVisibility(false)
+                    .setLineWidth(6f)
+                    .build());
+
+
+            SeriesItem item = new SeriesItem.Builder(Color.argb(255, 48, 0, 96))
+                    .setRange(0, 1, flavor)
+                    .setLineWidth(6f)
+                    .build();
+
+            container.addSeries(item);
+
         }
 
     }

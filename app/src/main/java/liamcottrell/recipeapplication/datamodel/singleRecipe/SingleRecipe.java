@@ -1,10 +1,10 @@
-package liamcottrell.recipeapplication.Recipe;
+package liamcottrell.recipeapplication.datamodel.singleRecipe;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SpecificRecipe {
+public class SingleRecipe {
 
 @SerializedName("yield")
 @Expose
