@@ -57,9 +57,11 @@ public class Feed extends AppCompatActivity
 
 
 
-            HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.yummly.com/v1/api/recipes").newBuilder();
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://api.yummly.com/v1/api/recipes").newBuilder();
             urlBuilder.addQueryParameter("requirePictures","true");
             final String requestURL = urlBuilder.build().toString();
+
+            Log.i("Request URL", requestURL.toString());
 
             JSONMatches getLatest = new JSONMatches();
 

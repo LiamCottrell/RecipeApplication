@@ -36,7 +36,7 @@ public class Preferences extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        AlertDialog.Builder builder;
+        /*AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
         builder.setTitle("Delete entry")
                 .setMessage("Are you sure you want to delete this entry?")
@@ -51,7 +51,7 @@ public class Preferences extends AppCompatActivity
                     }
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+                .show();*/
     }
 
     @Override

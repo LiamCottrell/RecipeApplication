@@ -25,6 +25,7 @@ public class JSONTask extends AsyncTask<String, String, String> {
 
         try {
             URL url = new URL(params[0]);
+            Log.i("JsonTask url", url.toString());
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()

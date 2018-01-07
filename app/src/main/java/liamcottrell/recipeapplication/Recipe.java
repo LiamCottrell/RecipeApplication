@@ -43,7 +43,7 @@ public class Recipe extends AppCompatActivity {
 
         Log.i("id", recipeID);
 
-        HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.yummly.com/v1/api/recipe/").newBuilder();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse("http://api.yummly.com/v1/api/recipe/").newBuilder();
         urlBuilder.addPathSegment(recipeID);
         final String requestURL = urlBuilder.build().toString();
 
