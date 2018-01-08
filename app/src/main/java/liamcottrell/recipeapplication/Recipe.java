@@ -1,5 +1,6 @@
 package liamcottrell.recipeapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,13 +21,41 @@ import com.squareup.picasso.Target;
 
 import java.util.concurrent.ExecutionException;
 
+import liamcottrell.recipeapplication.SQLite.DatabaseHelper;
 import liamcottrell.recipeapplication.datamodel.Matches.Matches;
 import liamcottrell.recipeapplication.datamodel.singleRecipe.SingleRecipe;
 import okhttp3.HttpUrl;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+import static liamcottrell.recipeapplication.MainActivity.db;
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 public class Recipe extends AppCompatActivity {
 
     private SingleRecipe singleRecipe;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        DatabaseHelper dbHelper = new DatabaseHelper(newBase);
+        db = dbHelper.getWritableDatabase();
+
+        liamcottrell.recipeapplication.datamodel.Preferences.Preferences preferences;
+        preferences = cupboard().withDatabase(db).get(liamcottrell.recipeapplication.datamodel.Preferences.Preferences.class, 1L);
+
+        if (preferences == null) {
+            Log.i("Preferences", "No Rows in database, creating new row");
+            liamcottrell.recipeapplication.datamodel.Preferences.Preferences settings = new liamcottrell.recipeapplication.datamodel.Preferences.Preferences(Boolean.FALSE);
+            long id = cupboard().withDatabase(db).put(settings);
+            preferences = cupboard().withDatabase(db).get(liamcottrell.recipeapplication.datamodel.Preferences.Preferences.class, 1L);
+        }
+
+        if (preferences.openDyslexic) {
+            Log.i("Preferences", "Preferences found, setting accessibility font to " + preferences.openDyslexic);
+            super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        } else {
+            super.attachBaseContext(newBase);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
