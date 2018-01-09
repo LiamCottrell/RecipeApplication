@@ -63,8 +63,6 @@ public class Recipe extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //SINGLE RESPONSIBILITY
-        //https://en.wikipedia.org/wiki/Single_responsibility_principle
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipie);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

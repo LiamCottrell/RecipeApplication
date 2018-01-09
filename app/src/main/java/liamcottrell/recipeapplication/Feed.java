@@ -68,7 +68,6 @@ public class Feed extends AppCompatActivity
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
-            //https://en.wikipedia.org/wiki/Single_responsibility_principle
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_feed);
 
@@ -144,12 +143,12 @@ public class Feed extends AppCompatActivity
                 TextView userRating = myView.findViewById(R.id.matchRating);
                 TextView source = myView.findViewById(R.id.MatchSource);
 
-                DecoView spiceContainer = myView.findViewById(R.id.MatchPiquantDV);
-                DecoView bitterContainer = myView.findViewById(R.id.MatchBitterDV);
-                DecoView sweetContainer = myView.findViewById(R.id.MatchSweetDV);
-                DecoView savoryContainer = myView.findViewById(R.id.MatchMeatyDV);
-                DecoView saltyContainer = myView.findViewById(R.id.MatchSaltyDV);
-                DecoView sourContainer = myView.findViewById(R.id.MatchSourDV);
+                TextView spiceContainer = myView.findViewById(R.id.MatchPiquantDV);
+                TextView bitterContainer = myView.findViewById(R.id.MatchBitterDV);
+                TextView sweetContainer = myView.findViewById(R.id.MatchSweetDV);
+                TextView savoryContainer = myView.findViewById(R.id.MatchMeatyDV);
+                TextView saltyContainer = myView.findViewById(R.id.MatchSaltyDV);
+                TextView sourContainer = myView.findViewById(R.id.MatchSourDV);
 
                 ImageView imageView = (ImageView) myView.findViewById(R.id.matchImage);
 
@@ -169,12 +168,13 @@ public class Feed extends AppCompatActivity
                 try{
                     Flavors flavors = match.getFlavors();
 
-                    generateDecoView(flavors.getPiquant().floatValue(), spiceContainer);
-                    generateDecoView(flavors.getBitter().floatValue(), bitterContainer);
-                    generateDecoView(flavors.getSweet().floatValue(), sweetContainer);
-                    generateDecoView(flavors.getMeaty().floatValue(), savoryContainer);
-                    generateDecoView(flavors.getSalty().floatValue(), saltyContainer);
-                    generateDecoView(flavors.getSour().floatValue(), sourContainer);
+                    spiceContainer.setText( flavourToPercent(Double.valueOf(flavors.getPiquant())).toString() + "%" );
+                    bitterContainer.setText( flavourToPercent(Double.valueOf(flavors.getBitter())).toString() + "%");
+                    sweetContainer.setText( flavourToPercent(Double.valueOf(flavors.getSweet())).toString() + "%" );
+                    savoryContainer.setText( flavourToPercent(Double.valueOf(flavors.getMeaty())).toString() + "%" );
+                    saltyContainer.setText( flavourToPercent(Double.valueOf(flavors.getSalty())).toString() + "%" );
+                    sourContainer.setText( flavourToPercent(Double.valueOf(flavors.getSour())).toString() + "%" );
+
 
 
                 } catch (Exception e){
@@ -195,6 +195,12 @@ public class Feed extends AppCompatActivity
 
             }
 
+        }
+
+        public Double flavourToPercent(Double flavour){
+            Double result = Math.round(flavour * 100.0) / 100.0;
+            result = result * 100;
+            return result;
         }
 
         @Override

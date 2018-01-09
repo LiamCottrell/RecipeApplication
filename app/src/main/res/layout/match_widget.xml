@@ -30,6 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <ImageView
                 android:id="@+id/matchImage"
                 android:layout_width="90dp"
@@ -189,11 +190,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-
-                    <com.hookedonplay.decoviewlib.DecoView
+                    <TextView
                         android:id="@+id/MatchPiquantDV"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N/A"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
 
                     <TextView
@@ -201,6 +205,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="11dp"
                         android:text="Spice"
+                        android:textAlignment="center"
                         android:textSize="8sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_bias="0.4"
@@ -218,16 +223,21 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <com.hookedonplay.decoviewlib.DecoView
+                    <TextView
                         android:id="@+id/MatchBitterDV"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N/A"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/MatchBitterText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Bitter"
+                        android:textAlignment="center"
                         android:textSize="8sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -246,16 +256,21 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <com.hookedonplay.decoviewlib.DecoView
+                    <TextView
                         android:id="@+id/MatchSweetDV"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N/A"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/MatchSweetText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sweet"
+                        android:textAlignment="center"
                         android:textSize="8sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -274,16 +289,21 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <com.hookedonplay.decoviewlib.DecoView
+                    <TextView
                         android:id="@+id/MatchMeatyDV"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N/A"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/MatchMeatyText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Savory"
+                        android:textAlignment="center"
                         android:textSize="8sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -300,16 +320,21 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <com.hookedonplay.decoviewlib.DecoView
+                    <TextView
                         android:id="@+id/MatchSaltyDV"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N/A"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/MatchSaltyText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Salty"
+                        android:textAlignment="center"
                         android:textSize="8sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -331,16 +356,21 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <com.hookedonplay.decoviewlib.DecoView
+                    <TextView
                         android:id="@+id/MatchSourDV"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N/A"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/MatchSourText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sour"
+                        android:textAlignment="center"
                         android:textSize="8sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
