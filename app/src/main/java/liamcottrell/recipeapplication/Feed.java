@@ -68,6 +68,7 @@ public class Feed extends AppCompatActivity
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
+            //https://en.wikipedia.org/wiki/Single_responsibility_principle
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_feed);
 
@@ -82,8 +83,6 @@ public class Feed extends AppCompatActivity
 
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
-
-
 
 
             HttpUrl.Builder urlBuilder = HttpUrl.parse("http://api.yummly.com/v1/api/recipes").newBuilder();
@@ -179,7 +178,7 @@ public class Feed extends AppCompatActivity
 
 
                 } catch (Exception e){
-
+                    //Laugh
                 }
 
                 myView.setOnClickListener( new View.OnClickListener(){

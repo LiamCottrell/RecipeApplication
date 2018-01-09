@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -59,15 +63,22 @@ public class Recipe extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //SINGLE RESPONSIBILITY
+        //https://en.wikipedia.org/wiki/Single_responsibility_principle
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipie);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         final CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         setSupportActionBar(toolbar);
 
+        TextView numberofServings = findViewById(R.id.numberofServings);
+        TextView totalTime = findViewById(R.id.totalTime);
+        RatingBar ratingBar = findViewById(R.id.ratingBar);
+        TextView ingredientsText = findViewById(R.id.ingredientsText);
+
+
         Intent myIntent = getIntent(); // gets the previously created intent
         String recipeID = myIntent.getStringExtra("recipeID"); // will return "FirstKeyValue"
-
 
 
         Log.i("id", recipeID);
@@ -82,7 +93,6 @@ public class Recipe extends AppCompatActivity {
 
         toolbar.setTitle(recipe.getName().toString());
         toolbarLayout.setTitle(recipe.getName().toString());
-
 
 
         final ImageView img = new ImageView(this);
@@ -103,14 +113,38 @@ public class Recipe extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Log.i("Link URL", recipe.getSource().getSourceRecipeUrl());
+                Intent attributeIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(recipe.getSource().getSourceRecipeUrl()));
+                startActivity(attributeIntent);
             }
         });
 
 
+        TextView Attribute = (TextView) findViewById(R.id.attributeText);
+        String attributeTextContext = recipe.getAttribution().getText();
+        Attribute.setText(attributeTextContext);
+
+        //Initialize ImageView
+        ImageView attributeImage = (ImageView) findViewById(R.id.attributeImage);
+
+        //Loading image from below url into imageView
+
+        Picasso.with(this)
+                .load(recipe.getAttribution().getLogo())
+                .into(attributeImage);
+        for (String ingredients : recipe.getIngredientLines()) {
+            ingredientsText.setText(ingredientsText.getText() +"\u2022 " + ingredients + "\n");
+        }
+
+        Log.i("Rating", String.valueOf(recipe.getRating()));
+
+        ratingBar.setRating(recipe.getRating());
+
+        numberofServings.setText(recipe.getNumberOfServings().toString());
+        totalTime.setText(recipe.getTotalTime());
 
     }
+
 
     @Override
     public void onBackPressed() {
