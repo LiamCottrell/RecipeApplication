@@ -118,9 +118,7 @@ public class Preferences extends AppCompatActivity
 
         Intent in;
 
-        if (id == R.id.nav_google_signin) {
-
-        } else if (id == R.id.nav_preferences) {
+        if (id == R.id.nav_preferences) {
             in = new Intent(this, Preferences.class);
             startActivity(in);
 
